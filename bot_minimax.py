@@ -13,6 +13,7 @@ def minimax(current_board, current_player, current_depth, maximizing_player):
 
     if maximizing_player:
         best_value = min_eval_board
+
         for y in range(board_size):
             for x in range(board_size):
                 if is_legal_move(current_board, x, y, current_player):
@@ -30,3 +31,12 @@ def minimax(current_board, current_player, current_depth, maximizing_player):
                     best_value = min(best_value, v)
 
     return best_value
+
+
+def get_list_legal_moves(current_board, current_player):
+    legal_moves = []
+    for y in range(board_size):
+        for x in range(board_size):
+            if is_legal_move(current_board, x, y, current_player):
+                legal_moves.append((x, y))
+    return legal_moves

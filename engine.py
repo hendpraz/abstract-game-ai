@@ -4,6 +4,7 @@ import copy
 from board import execute_move, is_legal_move, board_size
 from bot_alpha_beta import alpha_beta
 from bot_minimax import minimax
+from bot_random import random_bot
 
 min_eval_board = -1  # min - 1
 max_eval_board = board_size * board_size + 4 * board_size + 4 + 1  # max + 1
@@ -25,6 +26,8 @@ def best_move(current_board, current_player, cpu_mode, deepest_depth):
                 elif cpu_mode == 2:
                     points = alpha_beta(current_board, current_player, deepest_depth,
                                         min_eval_board, max_eval_board, True)
+                elif cpu_mode == 3:
+                    return random_bot(current_board, current_player)
 
                 if points > max_points:
                     max_points = points
