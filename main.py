@@ -1,8 +1,11 @@
 import os
 
 from engine import best_move
-from board import init_board, print_board, execute_move, is_legal_move, board, eval_board, is_terminal_node
-
+from board_processing import init_board, execute_move
+from board_identity import board
+from board_io import print_board
+from board_check import is_legal_move, is_terminal_node
+from board_eval import eval_board
 
 if __name__ == '__main__':
 

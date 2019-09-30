@@ -1,7 +1,9 @@
 import copy
 
 
-from board import execute_move, is_legal_move, board_size
+from board_processing import execute_move
+from board_identity import board_size
+from board_check import is_legal_move
 from bot_alpha_beta import alpha_beta
 from bot_minimax import minimax
 from bot_random import random_bot
