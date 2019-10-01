@@ -1,36 +1,31 @@
 import copy
 
-from board_checking import is_legal_move
-from board_identity import board_size
-from board_operation import execute_move
+from board_checking import get_list_legal_moves
+from board_operation import execute_move, min_eval_board, max_eval_board
 from bot_alpha_beta import alpha_beta
 from bot_minimax import minimax
 from bot_random import random_bot
-
-min_eval_board = -1  # min - 1
-max_eval_board = board_size * board_size + 4 * board_size + 4 + 1  # max + 1
 
 
 def best_move(current_board, current_player, cpu_mode, deepest_depth):
     points, max_points = 0, 0
     x_move_to, y_move_to = -1, -1
 
-    for y in range(board_size):
-        for x in range(board_size):
-            legal, message = is_legal_move(current_board, x, y, current_player)
-            if legal:
-                board_temp, total_piece_taken = execute_move(copy.deepcopy(current_board), x, y, current_player)
+    legal_moves = get_list_legal_moves(current_board, current_player)
 
-                if cpu_mode == 1:
-                    points = minimax(board_temp, current_player, deepest_depth, True)
-                elif cpu_mode == 2:
-                    points = alpha_beta(current_board, current_player, deepest_depth,
-                                        min_eval_board, max_eval_board, True)
-                elif cpu_mode == 3:
-                    return random_bot(current_board, current_player)
+    for x, y in legal_moves:
+        board_temp, _ = execute_move(copy.deepcopy(current_board), x, y, current_player)
 
-                if points > max_points:
-                    max_points = points
-                    x_move_to, y_move_to = x, y
+        if cpu_mode == 1:
+            points = minimax(board_temp, current_player, deepest_depth, True)
+        elif cpu_mode == 2:
+            points = alpha_beta(current_board, current_player, deepest_depth,
+                                min_eval_board, max_eval_board, True)
+        elif cpu_mode == 3:
+            return random_bot(current_board, current_player)
+
+        if points > max_points:
+            max_points = points
+            x_move_to, y_move_to = x, y
 
     return x_move_to, y_move_to
