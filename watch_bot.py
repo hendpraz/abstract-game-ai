@@ -6,19 +6,19 @@ from board.io import print_board
 from board.operation import init_fill_center_board, execute_move, eval_board
 from bot.engine import best_move
 
+
+def get_cpu_mode(i):
+    print('OTHELLO BOARD GAME')
+    print('1: Minimax')
+    print('2: Minimax w/ Alpha-Beta Pruning')
+    print('3: Random Bot')
+    order = '1st' if i == 1 else '2nd'
+    return int(input('Select ' + order + ' AI Algorithm: '))
+
+
 if __name__ == '__main__':
-
-    print('OTHELLO BOARD GAME')
-    print('1: Minimax')
-    print('2: Minimax w/ Alpha-Beta Pruning')
-    print('3: Random Bot')
-    cpu_mode1 = int(input('Select 1st AI Algorithm: '))
-
-    print('OTHELLO BOARD GAME')
-    print('1: Minimax')
-    print('2: Minimax w/ Alpha-Beta Pruning')
-    print('3: Random Bot')
-    cpu_mode2 = int(input('Select 2nd AI Algorithm: '))
+    cpu_mode1 = get_cpu_mode(1)
+    cpu_mode2 = get_cpu_mode(2)
 
     deepest_depth = 0
     if 0 < cpu_mode1 < 4 and 0 < cpu_mode2 < 4:
@@ -26,8 +26,6 @@ if __name__ == '__main__':
         depthStr = input('Select Search Depth (DEFAULT: 4): ')
         if depthStr != '':
             deepest_depth = int(deepest_depth)
-
-        print('\n1: User 2: AI (Just press Enter to exit game)')
 
         init_fill_center_board()
         while True:
@@ -40,10 +38,7 @@ if __name__ == '__main__':
                 print('PLAYER: ' + player)
 
                 if is_terminal_node(board, player):
-                    if p == 0:
-                        other_player = '2'
-                    else:
-                        other_player = '1'
+                    other_player = '2' if p == 0 else '1'
 
                     if is_terminal_node(board, other_player):
                         print()
