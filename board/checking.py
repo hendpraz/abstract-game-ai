@@ -11,7 +11,7 @@ def is_legal_move(current_board, x, y, player):
     if current_board[y][x] != '0':
         return False, 'Box is filled'
 
-    board_temp, total_piece_taken = execute_move(copy.deepcopy(current_board), x, y, player)
+    _, total_piece_taken = execute_move(copy.deepcopy(current_board), x, y, player)
     if total_piece_taken == 0:
         return False, 'No piece taken!'
 
@@ -21,11 +21,7 @@ def is_legal_move(current_board, x, y, player):
 def is_terminal_node(current_board, current_player):
     for y in range(board_size):
         for x in range(board_size):
-            legal, message = is_legal_move(current_board, x, y, current_player)
-            if legal:
-                return False
-
-            legal, message = is_legal_move(current_board, x, y, current_player)
+            legal, _ = is_legal_move(current_board, x, y, current_player)
             if legal:
                 return False
     return True
@@ -35,7 +31,7 @@ def get_list_legal_moves(current_board, current_player):
     legal_moves = []
     for y in range(board_size):
         for x in range(board_size):
-            legal, message = is_legal_move(current_board, x, y, current_player)
+            legal, _ = is_legal_move(current_board, x, y, current_player)
             if legal:
                 legal_moves.append((x, y))
     return legal_moves
