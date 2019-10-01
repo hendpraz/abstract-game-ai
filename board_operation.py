@@ -58,3 +58,7 @@ def eval_board(current_board, current_player):
                 else:
                     score += 1
     return score
+
+
+min_eval_board = -1  # min - 1
+max_eval_board = board_size * board_size + 4 * board_size + 4 + 1  # max + 1
