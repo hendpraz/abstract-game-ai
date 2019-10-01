@@ -81,7 +81,6 @@ if __name__ == '__main__':
                     frame.wait_variable(X)
                     x_move_to = X.get()
                     y_move_to = Y.get()
-                    buttons[y_move_to][x_move_to]["text"] = '1'
                     # x_move_to, y_move_to = map(int, input('X Y: ').split())
 
                     if is_legal_move(board, x_move_to, y_move_to, player):
