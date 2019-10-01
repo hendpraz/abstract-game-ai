@@ -1,7 +1,8 @@
 import copy
 
-
-from board import execute_move, is_legal_move, board_size
+from board_checking import is_legal_move
+from board_identity import board_size
+from board_operation import execute_move
 from bot_alpha_beta import alpha_beta
 from bot_minimax import minimax
 from bot_random import random_bot
@@ -11,7 +12,6 @@ max_eval_board = board_size * board_size + 4 * board_size + 4 + 1  # max + 1
 
 
 def best_move(current_board, current_player, cpu_mode, deepest_depth):
-
     points, max_points = 0, 0
     x_move_to, y_move_to = -1, -1
 

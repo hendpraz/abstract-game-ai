@@ -1,6 +1,10 @@
-from board import init_board, print_board, execute_move, board, eval_board, is_terminal_node
-from engine import best_move
 import sys
+
+from board_checking import is_terminal_node
+from board_identity import board
+from board_io import print_board
+from board_operation import init_fill_center_board, execute_move, eval_board
+from engine import best_move
 
 if __name__ == '__main__':
 
@@ -25,7 +29,7 @@ if __name__ == '__main__':
 
         print('\n1: User 2: AI (Just press Enter to exit game)')
 
-        init_board()
+        init_fill_center_board()
         while True:
 
             for p in range(2):
