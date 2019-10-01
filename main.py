@@ -8,6 +8,10 @@ from board import init_board, print_board, execute_move, is_legal_move, board, e
 
 m = tkinter.Tk()
 m.title("Othello AI")
+bottomtext = tkinter.Frame(m)
+bottomtext.pack(side = 'bottom')
+headertext = tkinter.Frame(m)
+headertext.pack()
 frame = tkinter.Frame(m)
 frame.pack()
 X = tkinter.IntVar()
@@ -21,6 +25,9 @@ def setXY(r,c):
     X.set(r)
     Y.set(c)
 
+header = tkinter.Label(headertext, height = 2, width = 30, text = "")
+header.pack()
+
 #buttons = [[int(0) in range(board_size)] in range(board_size)]
 buttons = []
 for i in range(board_size):
@@ -29,6 +36,9 @@ for i in range(board_size):
         temp.append(tkinter.Button(frame,width=3,command=lambda k=i,l=j: setXY(l,k)))
         temp[j].grid(row = i, column = j)
     buttons.append(temp)
+
+text = tkinter.Label(bottomtext,height = 4, width = 30, text = "")
+text.pack()
 
 def render(board):
     global buttons
@@ -71,6 +81,10 @@ if __name__ == '__main__':
                 print('PLAYER: ' + player)
                 print('Score User: ' + str(eval_board(board, '1')))
                 print('Score AI  : ' + str(eval_board(board, '2')))
+                text['text'] = 'PLAYER: ' + player + "\n"
+                text['text'] += 'Score User: ' + str(eval_board(board, '1')) + "\n"
+                text['text'] += 'Score AI  : ' + str(eval_board(board, '2')) + "\n"
+                m.update()
 
                 if is_terminal_node(board, player):
                     if p == 0:
@@ -84,10 +98,15 @@ if __name__ == '__main__':
                         print('Player cannot play! Game ended!')
                         print('Score User: ' + str(eval_board(board, '1')))
                         print('Score AI  : ' + str(eval_board(board, '2')))
+                        text['text'] = 'Player cannot play! Game ended!'
+                        text['text'] += 'Score User: ' + str(eval_board(board, '1'))
+                        text['text'] += 'Score AI  : ' + str(eval_board(board, '2'))
                         sys.exit()
                     else:
                         print('No moves, Player ' + player + 'skipped')
+                        text['text'] = 'No moves, Player ' + player + 'skipped'
                         continue
+                    m.update()
 
                 if player == '1':  # user's turn
                     while True:
@@ -102,11 +121,13 @@ if __name__ == '__main__':
                             board, total_piece_taken = execute_move(board, x_move_to, y_move_to, player)
                             render(board)
                             print('# of pieces taken: ' + str(total_piece_taken))
+                            text['text'] += '# of pieces taken: ' + str(total_piece_taken)
                             m.update()
                             break
                         else:
                             print(message)
                             print('Your move: ' + str(x_move_to) + ' ' + str(y_move_to) + ' is invalid move! Try again!')
+                            text['text'] += 'Your move: ' + str(x_move_to) + ' ' + str(y_move_to) + ' is invalid move! Try again!'
 
                 else:  # AI's turn
                     x_move_to, y_move_to = best_move(board, player, cpu_mode, deepest_depth)
@@ -117,5 +138,7 @@ if __name__ == '__main__':
                         m.update()
                         print('AI played (X Y): ' + str(x_move_to) + ' ' + str(y_move_to))
                         print('# of pieces taken: ' + str(total_piece_taken))
+                        header['text'] = 'AI played (X Y): ' + str(x_move_to) + ' ' + str(y_move_to) + '\n'
+                        header['text'] += '# of pieces taken: ' + str(total_piece_taken)
 
 m.mainloop()
