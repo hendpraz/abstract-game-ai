@@ -91,7 +91,7 @@ if __name__ == '__main__':
                             m.update()
                             break
                         else:
-                            print('Invalid move! Try again!')
+                            print('Your move: ' + str(x_move_to) + ' ' + str(y_move_to) + ' is invalid move! Try again!')
 
                 else:  # AI's turn
                     x_move_to, y_move_to = best_move(board, player, cpu_mode, deepest_depth)
