@@ -69,12 +69,25 @@ if __name__ == '__main__':
 
                 player = str(p + 1)
                 print('PLAYER: ' + player)
+                print('Score User: ' + str(eval_board(board, '1')))
+                print('Score AI  : ' + str(eval_board(board, '2')))
 
                 if is_terminal_node(board, player):
-                    print('Player cannot play! Game ended!')
-                    print('Score User: ' + str(eval_board(board, '1')))
-                    print('Score AI  : ' + str(eval_board(board, '2')))
-                    sys.exit()
+                    if p == 0:
+                        other_player = '2'
+                    else:
+                        other_player = '1'
+
+                    if is_terminal_node(board, other_player):
+                        print()
+                        print_board()
+                        print('Player cannot play! Game ended!')
+                        print('Score User: ' + str(eval_board(board, '1')))
+                        print('Score AI  : ' + str(eval_board(board, '2')))
+                        sys.exit()
+                    else:
+                        print('No moves, Player ' + player + 'skipped')
+                        continue
 
                 if player == '1':  # user's turn
                     while True:
@@ -84,13 +97,15 @@ if __name__ == '__main__':
                         y_move_to = Y.get()
                         # x_move_to, y_move_to = map(int, input('X Y: ').split())
 
-                        if is_legal_move(board, x_move_to, y_move_to, player):
+                        legal, message = is_legal_move(board, x_move_to, y_move_to, player)
+                        if legal:
                             board, total_piece_taken = execute_move(board, x_move_to, y_move_to, player)
                             render(board)
                             print('# of pieces taken: ' + str(total_piece_taken))
                             m.update()
                             break
                         else:
+                            print(message)
                             print('Your move: ' + str(x_move_to) + ' ' + str(y_move_to) + ' is invalid move! Try again!')
 
                 else:  # AI's turn

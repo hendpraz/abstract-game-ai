@@ -7,8 +7,8 @@ global buttons
 
 board = [['0' for x in range(board_size)] for y in range(board_size)]
 
-dir_x = [-1, 0, 1, -1, 1, -1, 0, 1]
-dir_y = [-1, -1, -1, 0, 0, 1, 1, 1]
+dir_x = [-1,  0,  1, -1, 1, -1, 0, 1]
+dir_y = [-1, -1, -1,  0, 0,  1, 1, 1]
 
 
 def init_board():
@@ -48,7 +48,7 @@ def execute_move(current_board, x, y, player):  # assuming valid move
             dx = x + dir_x[d] * (i + 1)
             dy = y + dir_y[d] * (i + 1)
 
-            if not(0 < dx < board_size and 0 < dy < board_size):
+            if not(0 <= dx < board_size and 0 <= dy < board_size):
                 piece_taken = 0
                 break
             elif current_board[dy][dx] == player:
@@ -71,20 +71,21 @@ def execute_move(current_board, x, y, player):  # assuming valid move
 
 def is_legal_move(current_board, x, y, player):
     if not(0 <= x < board_size and 0 <= y < board_size):
-        return False
+        return False, 'Out of range'
 
     if current_board[y][x] != '0':
-        return False
+        return False, 'Box is filled'
 
     board_temp, total_piece_taken = execute_move(copy.deepcopy(current_board), x, y, player)
     if total_piece_taken == 0:
-        return False
+        return False, 'No piece taken!'
 
-    return True
+    return True, 'OK'
 
 
-def eval_board(current_board, current_player):
+def eval_board(current_board_1, current_player):
     score = 0
+    current_board = board
     for y in range(board_size):
         for x in range(board_size):
             if current_board[y][x] == current_player:
@@ -100,6 +101,11 @@ def eval_board(current_board, current_player):
 def is_terminal_node(current_board, current_player):
     for y in range(board_size):
         for x in range(board_size):
-            if is_legal_move(current_board, x, y, current_player):
+            legal, message = is_legal_move(current_board, x, y, current_player)
+            if legal:
+                return False
+
+            legal, message = is_legal_move(current_board, x, y, current_player)
+            if legal:
                 return False
     return True

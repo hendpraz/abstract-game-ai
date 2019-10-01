@@ -17,8 +17,8 @@ def best_move(current_board, current_player, cpu_mode, deepest_depth):
 
     for y in range(board_size):
         for x in range(board_size):
-
-            if is_legal_move(current_board, x, y, current_player):
+            legal, message = is_legal_move(current_board, x, y, current_player)
+            if legal:
                 board_temp, total_piece_taken = execute_move(copy.deepcopy(current_board), x, y, current_player)
 
                 if cpu_mode == 1:

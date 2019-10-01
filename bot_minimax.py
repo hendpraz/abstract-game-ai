@@ -16,7 +16,8 @@ def minimax(current_board, current_player, current_depth, maximizing_player):
 
         for y in range(board_size):
             for x in range(board_size):
-                if is_legal_move(current_board, x, y, current_player):
+                legal, message = is_legal_move(current_board, x, y, current_player)
+                if legal:
                     board_temp, tot_ctr = execute_move(copy.deepcopy(current_board), x, y, current_player)
                     v = minimax(board_temp, current_player, current_depth - 1, False)
                     best_value = max(best_value, v)
@@ -25,7 +26,8 @@ def minimax(current_board, current_player, current_depth, maximizing_player):
         best_value = max_eval_board
         for y in range(board_size):
             for x in range(board_size):
-                if is_legal_move(current_board, x, y, current_player):
+                legal, message = is_legal_move(current_board, x, y, current_player)
+                if legal:
                     board_temp, tot_ctr = execute_move(copy.deepcopy(current_board), x, y, current_player)
                     v = minimax(board_temp, current_player, current_depth - 1, True)
                     best_value = min(best_value, v)

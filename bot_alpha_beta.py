@@ -15,7 +15,8 @@ def alpha_beta(current_board, current_player, current_depth, alpha, beta, maximi
         v = min_eval_board
         for y in range(board_size):
             for x in range(board_size):
-                if is_legal_move(current_board, x, y, current_player):
+                legal, message = is_legal_move(current_board, x, y, current_player)
+                if legal:
                     (boardTemp, tot_ctr) = execute_move(copy.deepcopy(current_board), x, y, current_player)
                     v = max(v, alpha_beta(boardTemp, current_player, current_depth - 1, alpha, beta, False))
                     alpha = max(alpha, v)
@@ -27,7 +28,8 @@ def alpha_beta(current_board, current_player, current_depth, alpha, beta, maximi
         v = max_eval_board
         for y in range(board_size):
             for x in range(board_size):
-                if is_legal_move(current_board, x, y, current_player):
+                legal, message = is_legal_move(current_board, x, y, current_player)
+                if legal:
                     (boardTemp, tot_ctr) = execute_move(copy.deepcopy(current_board), x, y, current_player)
                     v = min(v, alpha_beta(boardTemp, current_player, current_depth - 1, alpha, beta, True))
                     beta = min(beta, v)
