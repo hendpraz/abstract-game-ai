@@ -1,3 +1,4 @@
+from board_helper import is_corner_cell, is_side_cell
 from board_identity import board_size, board, dir_x, dir_y
 
 
@@ -51,10 +52,10 @@ def eval_board(current_board, current_player):
     for y in range(board_size):
         for x in range(board_size):
             if current_board[y][x] == current_player:
-                if (x == 0 or x == board_size - 1) and (y == 0 or y == board_size - 1):
-                    score += 4  # corner
-                elif (x == 0 or x == board_size - 1) or (y == 0 or y == board_size - 1):
-                    score += 2  # side
+                if is_corner_cell(x, y):
+                    score += 4
+                elif is_side_cell(x, y):
+                    score += 2
                 else:
                     score += 1
     return score
