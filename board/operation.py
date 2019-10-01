@@ -1,5 +1,5 @@
-from board_helper import is_corner_cell, is_side_cell
-from board_identity import board_size, board, dir_x, dir_y
+from board.helper import is_corner_cell, is_side_cell
+from board.identity import board_size, board, dir_x, dir_y
 
 
 def init_fill_center_board():

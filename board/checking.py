@@ -1,7 +1,7 @@
 import copy
 
-from board_identity import board_size
-from board_operation import execute_move
+from board.identity import board_size
+from board.operation import execute_move
 
 
 def is_legal_move(current_board, x, y, player):

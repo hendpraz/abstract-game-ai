@@ -1,7 +1,7 @@
 import copy
 
-from board_checking import is_terminal_node, get_list_legal_moves
-from board_operation import eval_board, execute_move, min_eval_board, max_eval_board
+from board.checking import is_terminal_node, get_list_legal_moves
+from board.operation import eval_board, execute_move, min_eval_board, max_eval_board
 
 
 def minimax(current_board, current_player, current_depth, maximizing_player):

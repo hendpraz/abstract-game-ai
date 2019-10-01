@@ -1,6 +1,6 @@
 import random
 
-from board_checking import get_list_legal_moves
+from board.checking import get_list_legal_moves
 
 
 def random_bot(current_board, current_player):

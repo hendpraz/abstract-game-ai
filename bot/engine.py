@@ -1,10 +1,10 @@
 import copy
 
-from board_checking import get_list_legal_moves
-from board_operation import execute_move, min_eval_board, max_eval_board
-from bot_alpha_beta import alpha_beta
-from bot_minimax import minimax
-from bot_random import random_bot
+from board.checking import get_list_legal_moves
+from board.operation import execute_move, min_eval_board, max_eval_board
+from bot.alpha_beta import alpha_beta
+from bot.minimax import minimax
+from bot.random import random_bot
 
 
 def best_move(current_board, current_player, cpu_mode, deepest_depth):

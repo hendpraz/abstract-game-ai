@@ -1,8 +1,8 @@
 import copy
 
-from board_checking import is_legal_move, is_terminal_node
-from board_identity import board_size
-from board_operation import eval_board, execute_move, min_eval_board, max_eval_board
+from board.checking import is_legal_move, is_terminal_node
+from board.identity import board_size
+from board.operation import eval_board, execute_move, min_eval_board, max_eval_board
 
 
 def alpha_beta(current_board, current_player, current_depth, alpha, beta, maximizing_player):

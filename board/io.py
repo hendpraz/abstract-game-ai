@@ -1,4 +1,4 @@
-from board_identity import board_size, board
+from board.identity import board_size, board
 
 
 def print_board():

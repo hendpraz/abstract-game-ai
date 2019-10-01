@@ -1,4 +1,4 @@
-from board_identity import board_size
+from board.identity import board_size
 
 
 def is_corner_cell(x, y):
