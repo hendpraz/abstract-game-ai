@@ -26,12 +26,12 @@ def print_board():
         for x in range(board_size):
             row += board[y][x]
             row += ' ' * m
-        print(row + ' ' + str(y))
-    print()
+        print(str(y) + '   ' + row)
+    print('Y')
     row = ''
     for x in range(board_size):
         row += str(x).zfill(m) + ' '
-    print(row + '\n')
+    print('  X ' + row + '\n')
 
 
 def execute_move(current_board, x, y, player):  # assuming valid move

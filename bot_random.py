@@ -14,9 +14,9 @@ def get_list_legal_moves(current_board, current_player):
 
 def random_bot(current_board, current_player):
     legal_moves = get_list_legal_moves(current_board, current_player)
-    rand_idx = random.randint(0, len(legal_moves))
+    rand_idx = random.randint(0, len(legal_moves) - 1)
 
-    print(legal_moves)
-    print(rand_idx, legal_moves[rand_idx])
+    # print(legal_moves)
+    # print(rand_idx, legal_moves[rand_idx])
 
     return legal_moves[rand_idx]
