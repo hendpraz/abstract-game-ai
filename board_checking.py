@@ -29,3 +29,13 @@ def is_terminal_node(current_board, current_player):
             if legal:
                 return False
     return True
+
+
+def get_list_legal_moves(current_board, current_player):
+    legal_moves = []
+    for y in range(board_size):
+        for x in range(board_size):
+            legal, message = is_legal_move(current_board, x, y, current_player)
+            if legal:
+                legal_moves.append((x, y))
+    return legal_moves

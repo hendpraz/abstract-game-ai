@@ -1,4 +1,3 @@
-from board_checking import is_legal_move
 from board_helper import is_corner_cell, is_side_cell
 from board_identity import board_size, board, dir_x, dir_y
 
@@ -64,13 +63,3 @@ def eval_board(current_board, current_player):
 
 min_eval_board = -1  # min - 1
 max_eval_board = board_size * board_size + 4 * board_size + 4 + 1  # max + 1
-
-
-def get_list_legal_moves(current_board, current_player):
-    legal_moves = []
-    for y in range(board_size):
-        for x in range(board_size):
-            legal, message = is_legal_move(current_board, x, y, current_player)
-            if legal:
-                legal_moves.append((x, y))
-    return legal_moves
