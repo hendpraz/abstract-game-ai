@@ -1,13 +1,14 @@
 import copy
 
-from board import is_terminal_node, eval_board, board_size, is_legal_move, execute_move
+from board_operation import eval_board, execute_move
+from board_checking import is_legal_move, is_terminal_node
+from board_identity import board_size
 
 min_eval_board = -1  # min - 1
 max_eval_board = board_size * board_size + 4 * board_size + 4 + 1  # max + 1
 
 
 def alpha_beta(current_board, current_player, current_depth, alpha, beta, maximizing_player):
-
     if current_depth == 0 or is_terminal_node(current_board, current_player):
         return eval_board(current_board, current_player)
 

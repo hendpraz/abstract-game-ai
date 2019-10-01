@@ -1,6 +1,7 @@
 import random
 
-from board import board_size, is_legal_move
+from board_checking import is_legal_move
+from board_identity import board_size
 
 
 def get_list_legal_moves(current_board, current_player):
