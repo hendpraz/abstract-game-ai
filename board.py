@@ -1,6 +1,9 @@
 import copy
+import tkinter
 
 board_size = 8
+
+global buttons
 
 board = [['0' for x in range(board_size)] for y in range(board_size)]
 
@@ -32,7 +35,6 @@ def print_board():
     for x in range(board_size):
         row += str(x).zfill(m) + ' '
     print('  X ' + row + '\n')
-
 
 def execute_move(current_board, x, y, player):  # assuming valid move
 
