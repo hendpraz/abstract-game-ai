@@ -70,7 +70,7 @@ def execute_move(current_board, x, y, player):  # assuming valid move
 
 
 def is_legal_move(current_board, x, y, player):
-    if not(0 < x < board_size and 0 < y < board_size):
+    if not(0 <= x < board_size and 0 <= y < board_size):
         return False
 
     if current_board[y][x] != '0':
