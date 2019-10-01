@@ -98,8 +98,6 @@ if __name__ == '__main__':
         print(cpu_mode)
         print(deepest_depth)
 
-        print('\n1: User 2: AI (Just press Enter to exit game)')
-
         init_fill_center_board()
         while True:
 
